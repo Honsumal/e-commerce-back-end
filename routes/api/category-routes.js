@@ -40,26 +40,26 @@ router.post('/', async (req, res) => {
   // create a new category
   try {
     const categoryData = await Category.create({
-      category_id: req.body.category_id,
+      category_name: req.body.category_name,
     });
-    res.status(200).json(categoryData);
+    res.status(200).json({message: `Successfully created category: ${req.body.category_name}`});
   } catch (err) {
     res.status(500).json(err);
   }
 });
 
-// NEED TO CHECK
+// Has error
 router.put('/:id', async (req, res) => {
   // update a category by its `id` value
   try {
     const categoryData = await Category.update(req.body,{
-      where: {id: req.params.category_id}
+      where: {id: req.params.id}
     });
 
     if (!categoryData){
       res.status(404).json({message: 'No category with this id found'})
     }
-    res.status(200).json(categoryData)
+    res.status(200).json({message: `Successfully updated category name to ${req.body.category_name}`})
     
   } catch (err) {
     res.status(500).json(err);
@@ -80,7 +80,7 @@ router.delete('/:id', async (req, res) => {
       return;
     }
 
-    res.status(200).json(categoryData);
+    res.status(200).json({message: `Successfully deleted category`});
   } catch (err) {
     res.status(500).json(err);
   }
