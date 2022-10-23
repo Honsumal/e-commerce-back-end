@@ -1,4 +1,4 @@
-# E-Commerce Back ENd
+# E-Commerce Back End
 
 ## Description
 
